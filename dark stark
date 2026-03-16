@@ -1,0 +1,17 @@
+-- Dark Max Anti-Lag خام (جربها لو الـ UI مش شغال)
+getgenv().DarkMaxAntiLag = true
+
+local Lighting = game:GetService("Lighting")
+Lighting.GlobalShadows = false
+Lighting.Brightness = 1
+Lighting.FogEnd = 9999
+settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+
+while getgenv().DarkMaxAntiLag do
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Fire") or v:IsA("Explosion") or v:IsA("Sparkles") then
+            v:Destroy()
+        end
+    end
+    task.wait(1.5)  -- أبطأ شوية عشان ما يحملش
+end
